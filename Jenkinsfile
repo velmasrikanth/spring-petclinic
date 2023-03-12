@@ -25,6 +25,10 @@ pipeline {
                                  junit '**/surefire-reports/TEST-*.xml'
             }
         }
-        stage('deploy')
+        stage('deploy'){
+            steps{
+                sh 'ansible-playbook -i hosts spc.yaml'
+            }
+        }
     }
 }
