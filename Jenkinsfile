@@ -26,18 +26,4 @@ pipeline {
             }
         }
     }
-    post {
-        success {
-            mail subject: "Jenkins Build of ${JOB_NAME} with id ${BUILD_ID} is success",
-                body: "Use this URL ${BUILD_URL} for more info",
-                to: 'team-all-qt@qt.com',
-                from: 'devops@qt.com'
-        }
-        failure {
-            mail subject: "Jenkins Build of ${JOB_NAME} with id ${BUILD_ID} is failed",
-                body: "Use this URL ${BUILD_URL} for more info",
-                to: 'team-all-qr@qt.com',
-                from: 'devops@qt.com'
-        }
-    }
 }
