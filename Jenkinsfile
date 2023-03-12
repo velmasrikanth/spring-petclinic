@@ -27,7 +27,7 @@ pipeline {
         }
         stage('deploy'){
             steps{
-                sh 'ansible-playbook -i home/ubuntu/hosts home/ubuntu/spc.yaml'
+                sh 'ansible-playbook -i ~/hosts ~/spc.yaml'
             }
         }
     }
