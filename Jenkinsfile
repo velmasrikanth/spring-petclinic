@@ -1,6 +1,6 @@
 pipeline {
     agent { label 'UBUNTU_NODE2'}
-    triggers { pollSCM('* * * * *')}
+//    triggers { pollSCM('* * * * *')}
     stages {
         stage('vcs'){
             steps {
@@ -27,7 +27,7 @@ pipeline {
         }
         stage('deploy'){
             steps{
-                sh 'ansible-playbook -i hosts ./spc.yaml'
+                sh 'ansible-playbook -i hosts spc.yaml'
             }
         }
     }
