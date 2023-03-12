@@ -1,0 +1,22 @@
+---
+- name: deploying spc 
+  hosts: all
+  become: yes
+  tasks:
+  - name: download jar file from s3
+    get_url:
+      url: "https://srikanthcicd.s3.ap-south-1.amazonaws.com/spring-petclinic-2.7.3.jar"
+      dest: /home/ubuntu
+      mode: '0777'
+  - name: copy spc service file
+    copy:
+      src: spc.service
+      dest: /etc/systemd/system/
+      mode: '0777'
+  - name: start service file
+    systemd:
+      name: spc.service
+      daemon_reload: yes
+      enabled: yes
+      state: started
+  
