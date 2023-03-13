@@ -3,9 +3,9 @@
   hosts: all
   become: yes
   tasks:
-  - name: download jar file from s3
+  - name: download jar file from jfrog
     get_url:
-      url: "https://srikanthcicd.s3.ap-south-1.amazonaws.com/spring-petclinic-3.0.0-SNAPSHOT.jar"
+      url: "https://srikanthvelma.jfrog.io/artifactory/libs-snapshot-local/org/springframework/samples/spring-petclinic/3.0.0-SNAPSHOT/spring-petclinic-3.0.0-20230309.061207-7.jar"
       dest: /home/ubuntu
       mode: '0777'
   - name: copy spc service file
