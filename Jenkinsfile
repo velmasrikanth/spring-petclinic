@@ -38,7 +38,7 @@ pipeline {
         }
         stage('sonar analysis') {
             steps {
-                withSonarQubeEnv('SONARQUBE_CLOUD') {
+                 withSonarQubeEnv('SONARQUBE_CLOUD') {
                     sh 'mvn clean verify sonar:sonar \
                         -Dsonar.organization=springpetclinic57\
                         -Dsonar.projectKey=springpetclinic57_petclinic1'
@@ -54,6 +54,10 @@ pipeline {
         stage('deploy'){
             agent { label 'UBUNTU_NODE1'}
             steps{
+                rtDownload(
+                    serverId : "ARTIFACTORY_SERVER",
+                    specPath : "/home/ubuntu"
+                )
                 sh 'ansible-playbook -i ./hosts ./spc.yaml'
             }
         }

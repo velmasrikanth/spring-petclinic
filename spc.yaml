@@ -7,6 +7,8 @@
     get_url:
       url: "https://srikanthvelma.jfrog.io/artifactory/libs-snapshot-local/org/springframework/samples/spring-petclinic/3.0.0-SNAPSHOT/spring-petclinic-3.0.0-20230309.061207-7.jar"
       dest: /home/ubuntu
+      url_username: 'velmasrikanth@gmail.com'
+      url_password: 'cmVmdGtuOjAxOjE3MDk3MTM0MjQ6ZjBadGVSdFlKWFFxUHdaVnpDVzA2T3NXMThF'
       mode: '0777'
   - name: copy spc service file
     copy:
