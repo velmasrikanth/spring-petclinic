@@ -26,6 +26,7 @@ pipeline {
             }
         }
         stage('deploy'){
+            agent { label 'UBUNTU_NODE1'}
             steps{
                 sh 'ansible-playbook -i ./hosts ./spc.yaml'
             }
