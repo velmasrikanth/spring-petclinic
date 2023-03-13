@@ -13,7 +13,6 @@
       src: spc.service
       dest: /etc/systemd/system/
       mode: '0777'
-      remote_src: yes
   - name: start service file
     systemd:
       name: spc.service
