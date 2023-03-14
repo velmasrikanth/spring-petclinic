@@ -19,6 +19,15 @@ pipeline {
                                  junit '**/surefire-reports/TEST-*.xml'
             }
         }
+        stage('sonar analysis') {
+            steps {
+                 withSonarQubeEnv('SONARQUBE_CLOUD') {
+                    sh 'mvn clean verify sonar:sonar \
+                        -Dsonar.organization=springpetclinic57\
+                        -Dsonar.projectKey=springpetclinic57_petclinic1'
+                }
+            }
+        }
         stage('copy build') {
             steps{
                 sh "mkdir -p /tmp/archive/${JOB_NAME}/${BUILD_ID} && cp ./target/spring-petclinic-*.jar /tmp/archive/${JOB_NAME}/${BUILD_ID}/"
