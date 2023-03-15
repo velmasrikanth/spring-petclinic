@@ -1,6 +1,6 @@
 pipeline {
     agent { label 'UBUNTU_NODE2'}
-    triggers { pollSCM('* * * * *')}
+//    triggers { pollSCM('* * * * *')}
     stages {
         stage('vcs'){
             steps {
@@ -17,6 +17,15 @@ pipeline {
             steps {
                 archiveArtifacts artifacts: '**/target/spring-petclinic-3.0.0-SNAPSHOT.jar'
                                  junit '**/surefire-reports/TEST-*.xml'
+            }
+        }
+        stage('sonar analysis') {
+            steps {
+                 withSonarQubeEnv('SONARQUBE_CLOUD') {
+                    sh 'mvn clean verify sonar:sonar \
+                        -Dsonar.organization=springpetclinic57\
+                        -Dsonar.projectKey=springpetclinic57_petclinic1'
+                }
             }
         }
         stage('copy build') {
